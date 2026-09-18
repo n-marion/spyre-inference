@@ -34,7 +34,7 @@ Branch name    BRANCH_NAME /        GITHUB_HEAD_REF  (PR) CI_COMMIT_REF_NAME
 from __future__ import annotations
 
 import os
-import re
+import regex as re
 
 
 def _sanitize(text: str, max_len: int = 20) -> str:

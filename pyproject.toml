@@ -1,8 +1,9 @@
 [build-system]
 requires = [
   "setuptools>=82",
-  "setuptools_scm>=8",
+  "setuptools_scm>=10",
   "packaging",
+  "regex",
 ]
 build-backend = "build_backend"
 backend-path  = ["."]
