@@ -34,8 +34,7 @@ Branch name    BRANCH_NAME /        GITHUB_HEAD_REF  (PR) CI_COMMIT_REF_NAME
 from __future__ import annotations
 
 import os
-
-import regex as re
+import re
 
 
 def _sanitize(text: str, max_len: int = 20) -> str:
@@ -53,7 +52,7 @@ def _get_build_number() -> str:
 
 
 def _resolve_branch(version_branch: str | None) -> str:
-    return (
+    branch = (
         os.getenv("BRANCH_NAME")
         or os.getenv("GIT_BRANCH", "").split("/")[-1]  # strips 'origin/' prefix
         or os.getenv("GITHUB_HEAD_REF")  # PR events (avoids NNN/merge from REF_NAME)
@@ -62,6 +61,7 @@ def _resolve_branch(version_branch: str | None) -> str:
         or version_branch
         or ""
     )
+    return "" if branch == "HEAD" else branch
 
 
 def ci_local_scheme(version) -> str:  # type: ignore[no-untyped-def]
